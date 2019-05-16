@@ -1,0 +1,20 @@
+name: pi2-kernel
+version: 4.4.0-1109.117
+summary: The canonical raspi2 armhf kernel
+description: The Ubuntu linux-raspi2 kernel package as a snap
+type: kernel
+confinement: strict
+
+parts:
+  kernel:
+    source: https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux-snap/+git/xenial
+    source-type: git
+    source-branch: master
+    plugin: make
+    make-parameters:
+      - KERNEL=linux-image-raspi2
+      - PKGS=raspberrypi-wireless-firmware bluez-firmware
+      - PROPOSED=true
+    build-packages:
+      - debootstrap
+      - lsb-release
