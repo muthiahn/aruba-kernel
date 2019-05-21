@@ -1,4 +1,4 @@
-name: testpi2-kernel
+name: aruba-testpikernel
 version: 4.4.0-1109.117
 summary: The canonical raspi2 armhf kernel
 description: The Ubuntu linux-raspi2 kernel package as a snap
