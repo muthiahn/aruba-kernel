@@ -1,20 +1,31 @@
-name: pikernel
-version: 4.4.0-1109.117
-summary: The canonical raspi2 armhf kernel
-description: The Ubuntu linux-raspi2 kernel package as a snap
-type: kernel
+name: ant-kernel
+version: null
+version-script: |
+    . debian/debian.env
+    dpkg-parsechangelog -l $DEBIAN/changelog -S version
+summary: The Ubuntu generic Linux kernel
+description: This Ubuntu generic Linux kernel
+grade: stable
 confinement: strict
+type: kernel
 
 parts:
   kernel:
-    source: https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux-snap/+git/xenial
+    plugin: kernel
+    source: git://github.com/herrnst/ubuntu-bionic-kernel.git
     source-type: git
-    source-branch: master
-    plugin: make
-    make-parameters:
-      - KERNEL=linux-image-raspi2
-      - PKGS=raspberrypi-wireless-firmware bluez-firmware
-      - PROPOSED=true
+    kconfigflavour: generic
+    kconfigs:
+      - CONFIG_DEBUG_INFO=n
+  firmware:
+    plugin: nil
+    stage-packages:
+      - linux-firmware
+    organize:
+      lib/firmware: firmware
+    prime:
+      - -usr
+      - -lib
     build-packages:
-      - debootstrap
-      - lsb-release
+      - cpio
+      - libssl-dev
