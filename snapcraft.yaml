@@ -12,7 +12,7 @@ type: kernel
 parts:
   kernel:
     plugin: kernel
-    source: git://github.com/herrnst/ubuntu-bionic-kernel.git
+    source: git://kernel.ubuntu.com/ubuntu/ubuntu-xenial.git
     source-type: git
     kconfigflavour: generic
     kconfigs:
@@ -21,7 +21,6 @@ parts:
       cp debian/scripts/retpoline-extract-one \
         $SNAPCRAFT_PART_BUILD/scripts/ubuntu-retpoline-extract-one
       snapcraftctl build
-    kernel-with-firmware: false  
   firmware:
     plugin: nil
     stage-packages:
@@ -33,4 +32,5 @@ parts:
       - -lib
     build-packages:
       - cpio
-      - libssl-dev           
+      - libssl-dev
+      - dpkg-dev
