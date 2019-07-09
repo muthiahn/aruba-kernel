@@ -7,7 +7,7 @@ confinement: strict
 type: kernel
 architectures:
   - build-on: amd64
-    run-on: amd64
+  - run-on: amd64
 parts:
   kernel:
     plugin: kernel
@@ -17,9 +17,7 @@ parts:
     kconfigs:
       - CONFIG_DEBUG_INFO=n
       - CONFIG_MARVELL_PHY=y
-      - CONFIG_I2C_SMBUS=y
-      - CONFIG_I2C_ISMT=y
-   firmware:
+    firmware:
     plugin: nil
     stage-packages:
       - linux-firmware
