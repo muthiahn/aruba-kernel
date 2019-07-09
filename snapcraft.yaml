@@ -19,11 +19,7 @@ parts:
       - CONFIG_MARVELL_PHY=y
       - CONFIG_I2C_SMBUS=y
       - CONFIG_I2C_ISMT=y
-    override-build: |
-      cp debian/scripts/retpoline-extract-one \
-        $SNAPCRAFT_PART_BUILD/scripts/ubuntu-retpoline-extract-one
-      snapcraftctl build
-  firmware:
+   firmware:
     plugin: nil
     stage-packages:
       - linux-firmware
