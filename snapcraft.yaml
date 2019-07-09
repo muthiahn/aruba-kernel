@@ -1,4 +1,4 @@
-name: pc-kernel
+name: ant-kernel
 version: 4.4.x
 summary: The Ubuntu generic Linux kernel
 description: This Ubuntu generic Linux kernel
