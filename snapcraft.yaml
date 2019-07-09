@@ -5,7 +5,9 @@ description: This Ubuntu generic Linux kernel
 grade: stable
 confinement: strict
 type: kernel
-
+architectures:
+  - build-on: amd64
+    run-on: amd64
 parts:
   kernel:
     plugin: kernel
