@@ -1,4 +1,4 @@
-name: ant-kernel
+name: pc-kernel
 version: null
 version-script: |
     . debian/debian.env
@@ -8,18 +8,16 @@ description: This Ubuntu generic Linux kernel
 grade: stable
 confinement: strict
 type: kernel
-architectures:
-  - build-on: amd64
-    run-on: amd64
 
 parts:
   kernel:
     plugin: kernel
-    source: git://kernel.ubuntu.com/ubuntu/ubuntu-xenial.git
+    source: .
     source-type: git
     kconfigflavour: generic
     kconfigs:
       - CONFIG_DEBUG_INFO=n
+      - CONFIG_MARVELL_PHY=y
     override-build: |
       cp debian/scripts/retpoline-extract-one \
         $SNAPCRAFT_PART_BUILD/scripts/ubuntu-retpoline-extract-one
