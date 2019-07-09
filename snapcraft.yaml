@@ -1,8 +1,5 @@
 name: pc-kernel
-version: null
-version-script: |
-    . debian/debian.env
-    dpkg-parsechangelog -l $DEBIAN/changelog -S version
+version: 4.4.x
 summary: The Ubuntu generic Linux kernel
 description: This Ubuntu generic Linux kernel
 grade: stable
@@ -12,12 +9,14 @@ type: kernel
 parts:
   kernel:
     plugin: kernel
-    source: .
+    source: git://kernel.ubuntu.com/ubuntu/ubuntu-xenial.git
     source-type: git
     kconfigflavour: generic
     kconfigs:
       - CONFIG_DEBUG_INFO=n
       - CONFIG_MARVELL_PHY=y
+      - CONFIG_I2C_SMBUS=y
+      - CONFIG_I2C_ISMT=y
     override-build: |
       cp debian/scripts/retpoline-extract-one \
         $SNAPCRAFT_PART_BUILD/scripts/ubuntu-retpoline-extract-one
